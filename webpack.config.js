@@ -3,7 +3,7 @@ const path = require('path');
 const publicPath = path.resolve(__dirname, 'public');
 
 module.exports = {
-  entry: './src/playground/hoc.js',
+  entry: './src/app.js',
   output: {
     path: publicPath,
     filename: 'bundle.js'
