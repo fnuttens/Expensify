@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import moment from 'moment';
 
 import { ExpenseListFilters } from '../../components/ExpenseListFilters';
 import { filters, altFilters } from '../fixtures/filters';
@@ -33,4 +34,45 @@ test('should render ExpenseListFilters with alt data correctly', () => {
     filters: altFilters,
   });
   expect(wrapper).toMatchSnapshot();
+});
+
+test('should handle text change', () => {
+  const value = 'New text filter';
+  wrapper.find('input').simulate('change', {
+    target: { value },
+  });
+  expect(setTextFilter).toHaveBeenLastCalledWith(value);
+});
+
+test('should sort by date', () => {
+  const value = 'date';
+  wrapper.find('select').simulate('change', {
+    target: { value },
+  });
+  expect(sortByDate).toHaveBeenCalled();
+});
+
+test('should sort by amount', () => {
+  const value = 'amount';
+  wrapper.find('select').simulate('change', {
+    target: { value },
+  });
+  expect(sortByAmount).toHaveBeenCalled();
+});
+
+test('should handle date changes', () => {
+  const startDate = moment(0);
+  const endDate = moment(500);
+  wrapper.find('DateRangePicker').simulate('datesChange', {
+    startDate,
+    endDate,
+  });
+  expect(setStartDate).toHaveBeenLastCalledWith(startDate);
+  expect(setEndDate).toHaveBeenLastCalledWith(endDate);
+});
+
+test('should handle date focus changes', () => {
+  const calendarFocused = 'endDate';
+  wrapper.find('DateRangePicker').simulate('focusChange', calendarFocused);
+  expect(wrapper.state('calendarFocused')).toBe(calendarFocused);
 });
