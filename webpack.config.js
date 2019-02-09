@@ -26,13 +26,23 @@ module.exports = (env) => {
         test: /^.*\.s?css$/,
         use: [
           isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader',
-          'sass-loader'
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            }
+          },
         ]
       }]
     },
     mode: 'development',
-    devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
+    devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
       contentBase: publicPath,
       historyApiFallback: true
