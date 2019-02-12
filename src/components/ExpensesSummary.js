@@ -11,9 +11,9 @@ const formatSummary = (count, total) => {
   return `Viewing ${count} ${pluralExpense} totalling ${totalAmount}`;
 };
 
-export const ExpensesSummary = (props) => (
+export const ExpensesSummary = ({ expenseCount, expensesTotal }) => (
   <div>
-    <p>{formatSummary(props.expenseCount, props.expensesTotal)}</p>
+    <h1>{formatSummary(expenseCount, expensesTotal)}</h1>
   </div>
 );
 

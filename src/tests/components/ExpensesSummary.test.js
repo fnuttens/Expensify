@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { ExpensesSummary } from '../../components/ExpensesSummary';
 import expenses from '../fixtures/expenses';
 
-test('should render 1 expense correctly', () => {
+test('should correctly render ExpensesSummary with 1 expense', () => {
   const wrapper = shallow(
     <ExpensesSummary
       expenseCount={1}
@@ -14,7 +14,7 @@ test('should render 1 expense correctly', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-test('should render several expenses correctly', () => {
+test('should correctly render ExpensesSummary with multiple expenses', () => {
   const wrapper = shallow(
     <ExpensesSummary
       expenseCount={2}
